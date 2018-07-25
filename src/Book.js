@@ -1,4 +1,5 @@
 import React from 'react';
+import noCover from './icons/image.png';
 
 const Book = (props) => {
     const {changedBooks} = props;
@@ -12,7 +13,7 @@ const Book = (props) => {
                         <div className="book-top">
                         {/* url idea from question asked by Jastuccio in the udacity slack workspace */}
                             <div className="book-cover"
-                             style={{ width: 128, height: 193, backgroundImage: `url(${changedBook.imageLinks.thumbnail}` }}>
+                             style={{ width: 128, height: 193, backgroundImage: `url(${changedBook.imageLinks && changedBook.imageLinks.thumbnail ? changedBook.imageLinks.thumbnail : noCover}` }}>
                             </div>
                             <div className="book-shelf-changer">
                                 {/* TODO:Change shelf based on user input */}
