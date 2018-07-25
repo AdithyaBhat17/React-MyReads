@@ -13,6 +13,7 @@ const Book = (props) => {
                              style={{ width: 128, height: 193, backgroundImage: `url(${changedBook.imageLinks.thumbnail}` }}>
                             </div>
                             <div className="book-shelf-changer">
+                                {/* TODO:Change shelf based on user input */}
                                 <select
                                  name="shelf"
                                  onChange={event => props.changeToShelf(event,changedBook)}
