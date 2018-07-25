@@ -41,20 +41,20 @@ class SearchBooks extends React.Component{
     };
 
     addToShelf(r){
-      let hasShelf = this.props.books.filter(b => b.id === r.id);
-      // if(hasShelf.length){
-      //   return hasShelf[0].shelf;
+      let Shelf = this.props.books.filter(b => b.id === r.id);
+      // if(Shelf.length){
+      //   return Shelf[0].shelf;
       // } else {
       //   return "null"
       // }
-      return hasShelf.length ? hasShelf[0].shelf : "null";
+      return Shelf.length ? Shelf[0].shelf : "null";
     }
 
     render(){
         return(
             <div className="search-books">
             <div className="search-books-bar">
-              <Link className="close-search" to="/">Close</Link>
+              <Link className="close-search" to="/React-MyReads">Close</Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
