@@ -11,12 +11,6 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      /**
-       * TODO: Instead of using this state variable to keep track of which page
-       * we're on, use the URL in the browser's address bar. This will ensure that
-       * users can use the browser's back and forward buttons to navigate between
-       * pages, as well as provide a good URL they can bookmark and share.
-       */
       books:[]
     };
   }
@@ -29,13 +23,11 @@ class App extends React.Component {
     });
   }
 
-  //TODO:Change shelf on user input and update the changes to the backend as well.
+  //Change shelf on user input and update the changes to the backend as well.
   //got the idea for this function from https://github.com/djarrin/MyReads/blob/master/src/App.js
   changeToShelf = (event,changedBook) =>{
-    const books = this.state.books;
     const shelf = event.target.value;
     changedBook.shelf = event.target.value;
-    this.setState({books});
 
   //update the changes to the backend
   //   Method Signature:
