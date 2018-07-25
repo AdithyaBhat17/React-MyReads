@@ -32,7 +32,16 @@ class SearchBooks extends React.Component{
             this.setState({
               searchedBooks:searchedResults
             });
+          }else{
+            //fixed: as per suggestion by the reviewer,to clear the prev search results if the query is empty and if the result is empty
+            this.setState({
+              searchedBooks:[]
+            });
           }
+        });
+      }else{
+        this.setState({
+          searchedBooks:[]
         });
       }
       this.setState({
@@ -45,7 +54,7 @@ class SearchBooks extends React.Component{
       if(Shelf.length){
         return Shelf[0].shelf;
       } else {
-        return "null"
+        return "none";
       }
     }
 
