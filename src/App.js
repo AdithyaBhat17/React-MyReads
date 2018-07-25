@@ -23,21 +23,16 @@ class App extends React.Component {
     });
   }
 
-  //Change shelf on user input and update the changes to the backend as well.
-  //got the idea for this function from https://github.com/djarrin/MyReads/blob/master/src/App.js
+  //Change shelf on user input.
   changeToShelf = (event,changedBook) =>{
     const shelf = event.target.value;
-    changedBook.shelf = event.target.value;
-
-  //update the changes to the backend
-  //   Method Signature:
-  // ```js
-  // update(book, shelf)
-  // ```
-    BooksAPI.update(changedBook,shelf).then(()=>{
-      this.setState((currState)=>({
-        books:currState.books.filter(book => book.id !== changedBook.id).concat([changedBook])
-      }));
+    BooksAPI.update(changedBook,shelf).then(resp => {
+      changedBook.shelf = shelf;
+      var changedBooks = this.state.books.filter(book => book.id !== changedBook.id);
+      changedBooks.push(changedBook);
+      this.setState({
+        books:changedBooks
+      });
     });
   };
 
