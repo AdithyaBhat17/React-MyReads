@@ -5,7 +5,8 @@ const Book = (props) => {
     return(
         <div className="bookshelf-books">
             <ol className="books-grid">
-                {changedBooks.map((changedBook)=>(
+            {/* FIXED: Now handling undefined thumbnail property */}
+                {changedBooks.length > 0 && changedBooks.map((changedBook)=>(
                     <li key={changedBook.id}>
                     <div className="book">
                         <div className="book-top">
@@ -20,7 +21,6 @@ const Book = (props) => {
                                  onChange={event => props.changeToShelf(event,changedBook)}
                                  value={changedBook.shelf}
                                 >
-                                    {/*ISSUE:currently reading is auto selected :( */}
                                     <option value="none" disabled="true">Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>
                                     <option value="wantToRead">Want to Read</option>
@@ -30,8 +30,8 @@ const Book = (props) => {
                             </div>
                         </div>
                         <div className="book-title">{changedBook.title}</div>
-                        <div className="book-authors">{changedBook.authors} 
-                        {/*ISSUE: why doesn't if statement work here? I wanted to seperate multiple authors with a `,` */}
+                        <div className="book-authors">{changedBook.authors ? changedBook.authors.join(", ") : ""} 
+                        {/*FIXED: Thanks for the suggestion (if-else in JSX)*/}
                         </div>
                     </div>
                 </li>
