@@ -17,6 +17,7 @@ import Book from './Book';
                     <div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title animated bounceInLeft">Currently Reading</h2>
+                            {/* feat : short-circuit evaluation :D  */}
                             {currentlyReading.length > 0 && <Book 
                             changedBooks={currentlyReading}
                             changeToShelf={props.changeToShelf}
