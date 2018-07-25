@@ -1,6 +1,6 @@
-//data:searched query,array of books returned;
+//data:searched query,array of books returned and error message;
 
- //idea from https://stackoverflow.com/questions/49681170/search-bar-functionality-for-book-api-in-react
+//idea from https://stackoverflow.com/questions/49681170/search-bar-functionality-for-book-api-in-react
 
 import React from 'react';
 import {Link} from 'react-router-dom';
@@ -13,33 +13,35 @@ class SearchBooks extends React.Component{
       super(props);
       this.state={
         query:'',
-        searchedBooks:[]
+        searchedBooks:[],
+        searchError:false
       };
     }
 
    
     
     searchBooks = (query) => {
-      if(query){
+      if(query && query.length>0){
         //fixed:searchedResults `undefined`
         let searchedResults=[];
-        BooksAPI.search(query).then(res => {
+        BooksAPI.search(query,20).then(res => {
           if(res.length){
             searchedResults = res.map(r => {
               r.shelf = this.addToShelf(r);
               return r;
             });
             this.setState({
-              searchedBooks:searchedResults
+              searchedBooks:searchedResults,
+              searchError:false
             });
-          }else{
-            //fixed: as per suggestion by the reviewer,to clear the prev search results if the query is empty and if the result is empty
+          } else {
             this.setState({
-              searchedBooks:[]
+              searchedBooks:[],
+              searchError:true
             });
           }
         });
-      }else{
+      } else {
         this.setState({
           searchedBooks:[]
         });
@@ -54,7 +56,7 @@ class SearchBooks extends React.Component{
       if(Shelf.length){
         return Shelf[0].shelf;
       } else {
-        return "none";
+        return "none"
       }
     }
 
@@ -80,9 +82,16 @@ class SearchBooks extends React.Component{
               </div>
             </div>
             <div className="search-books-results">
+            {this.state.searchedBooks.length > 0 &&
               <Book
                changedBooks={this.state.searchedBooks}
                changeToShelf={this.props.changeToShelf}/>
+            }
+            <div>
+            {(this.state.searchError) && (
+              <div style={{textAlign:`center`}}>search returned 0 results! Try Again</div>
+            )}
+            </div>
             </div>
           </div>
         );
