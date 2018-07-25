@@ -17,24 +17,24 @@ import Book from './Book';
                     <div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title animated bounceInLeft">Currently Reading</h2>
-                            <Book 
+                            {currentlyReading.length > 0 && <Book 
                             changedBooks={currentlyReading}
                             changeToShelf={props.changeToShelf}
-                            />
+                            />}
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title animated bounceInLeft">Want to Read</h2>
-                            <Book
+                            {wantToRead.length > 0 && <Book
                             changedBooks={wantToRead}
                             changeToShelf={props.changeToShelf}
-                            />
+                            />}
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title animated bounceInLeft">Read</h2>
-                            <Book
+                            {read.length > 0 && <Book
                             changedBooks={read}
                             changeToShelf={props.changeToShelf}
-                            />                        
+                            />}                        
                         </div>
                     </div>
                 </div>
