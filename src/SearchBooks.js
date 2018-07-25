@@ -1,5 +1,7 @@
 //data:searched query,array of books returned;
 
+ //idea from https://stackoverflow.com/questions/49681170/search-bar-functionality-for-book-api-in-react
+
 import React from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
@@ -14,15 +16,13 @@ class SearchBooks extends React.Component{
         searchedBooks:[]
       };
     }
+
+   
     
     searchBooks = (query) => {
       if(query){
         //fixed:searchedResults `undefined`
         let searchedResults=[];
-        // Method Signature:
-        // ```js
-        // search(query, maxResults)
-        // ```
         BooksAPI.search(query).then(res => {
           if(res.length){
             searchedResults = res.map(r => {
@@ -42,12 +42,11 @@ class SearchBooks extends React.Component{
 
     addToShelf(r){
       let Shelf = this.props.books.filter(b => b.id === r.id);
-      // if(Shelf.length){
-      //   return Shelf[0].shelf;
-      // } else {
-      //   return "null"
-      // }
-      return Shelf.length ? Shelf[0].shelf : "null";
+      if(Shelf.length){
+        return Shelf[0].shelf;
+      } else {
+        return "null"
+      }
     }
 
     render(){

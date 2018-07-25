@@ -4,6 +4,7 @@ import Book from './Book';
 
     const BookShelf = (props) => {
         const {books} = props;
+        //TODO: pass the filtered array to `Book`.
         const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
         const wantToRead = books.filter(book => book.shelf === "wantToRead");
         const read = books.filter(book => book.shelf === "read");

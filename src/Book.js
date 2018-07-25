@@ -9,6 +9,7 @@ const Book = (props) => {
                     <li key={changedBook.id}>
                     <div className="book">
                         <div className="book-top">
+                        {/* url idea from question asked by Jastuccio in the udacity slack workspace */}
                             <div className="book-cover"
                              style={{ width: 128, height: 193, backgroundImage: `url(${changedBook.imageLinks.thumbnail}` }}>
                             </div>

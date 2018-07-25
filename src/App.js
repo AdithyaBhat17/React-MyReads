@@ -29,7 +29,8 @@ class App extends React.Component {
     });
   }
 
-  //TODO:Change shelf on user input
+  //TODO:Change shelf on user input and update the changes to the backend as well.
+  //got the idea for this function from https://github.com/djarrin/MyReads/blob/master/src/App.js
   changeToShelf = (event,changedBook) =>{
     const books = this.state.books;
     const shelf = event.target.value;
