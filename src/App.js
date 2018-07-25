@@ -21,6 +21,8 @@ class App extends React.Component {
     };
   }
 
+  //Lifecycle
+
   componentDidMount(){
     BooksAPI.getAll().then(books => {
       this.setState({books})
@@ -49,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" render={()=>(
+        <Route path="/React-MyReads" render={()=>(
           <BookShelf
             books={this.state.books}
             changeToShelf={this.changeToShelf}
